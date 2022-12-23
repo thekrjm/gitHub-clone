@@ -1,25 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import styles from './App.module.css';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <>
+      <div className={styles.nav}>Nav</div>
+      <div className={styles.header}>Header</div>
+      <div className={styles.listContainer}>listContainer</div>
+      <Button style={{ fontSize: '14px', backgroundColor: "green", color: "white" }}>
+        New Issue <div className={styles.circle}>5</div>
+      </Button>
+      <Space />
+      <div className={styles.footer}>footer</div>
+    </>
+  )
+}
+
+function Button({ style, children }) {
+  return (
+    <button className={styles.button} style={style}>{children}</button>
+  )
+}
+function Space() {
+  return (
+    <div className={styles.space}></div>
+  )
 }
 
 export default App;
