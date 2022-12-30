@@ -2,13 +2,23 @@ import styles from './Tabs.module.css';
 import cx from 'clsx'
 import { useState } from 'react';
 
-const tapList = ['Code', 'Issue', 'Pull Request'];
+const tabList = [
+    "Code",
+    "Issues",
+    "Pull requests",
+    "Actions",
+    "Project",
+    "Wiki",
+    "Security",
+    "Insight",
+    "Setting",
+  ]
 
 export default function Taps() {
     const [selectedTapIdx, setSelectedTapIdx] = useState(0)
     return (
         <ul className={styles.tapList}>
-            {tapList.map((tap, idx) => (
+            {tabList.map((tap, idx) => (
                 <Tap
                     key={`${idx}`}
                     title={tap}

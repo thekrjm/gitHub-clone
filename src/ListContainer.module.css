@@ -21,22 +21,6 @@
     box-shadow: none;
 }
 
-.filterLists {
-    display: flex;
-    align-items: center;
-}
-
-.filterLists>span {
-    padding: 0 16px;
-    line-height: 21px;
-    cursor: pointer;
-    color: #57606a;
-}
-
-.filterLists>span:hover {
-    color: #000000;
-}
-
 .listFilter {
     margin-top: 20px;
     border-top-left-radius: 6px;
@@ -45,11 +29,13 @@
     padding: 16px;
 }
 
-.textFilter {
-    cursor: pointer;
-    margin-right: 8px;
+.paginationContainer{
+    display: flex;
+    justify-content: center;
 }
 
-.selected {
-    font-weight: 800;
+.button{
+    font-size: 14px;
+    background-color: rgb(39, 224, 144);
+    color: white;
 }

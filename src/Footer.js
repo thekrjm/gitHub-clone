@@ -2,15 +2,22 @@ import styles from './Footer.module.css'
 
 const URL_PREFIX = 'https://docs.github.com/en/site-policy';
 
-const footerItems = [
-    {
-        title: 'Trems',
-        link: `${URL_PREFIX}/github-terms/github-terms-of-service`
-    },
-    {
-        title: 'Privacy',
-        link: `${URL_PREFIX}/github-terms/github-terms-of-service`
-    }
+const footerItems = [{
+    title:'Terms',
+    link:`${URL_PREFIX}/github-terms/github-terms-of-service`,
+},{
+    title:'Privacy',
+    link:`${URL_PREFIX}/github-terms/github-terms-of-service`,
+},
+{title:'Security', link:'https:github.com/security'},
+{title:'Satatus', link:'https:githubstatus.com'},
+{title:'Docs', link:'https:docs.github.com/en'},
+{title:'Contact Github', link:'https://support.github.com/?tag=dotcom-footer'},
+{title:'Pricing', link:'https:github.com/pricing'},
+{title:'API', link:'https:github.com/en'},
+{title:'Training', link:'https://services.github.com/'},
+{title:'Blog', link:'https:github.blog'},
+{title:'About', link:'https:github.com/about'},
 ]
 
 export default function Footer() {
