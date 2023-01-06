@@ -1,45 +1,41 @@
 import styles from './Tabs.module.css';
-import cx from 'clsx'
-import { useState } from 'react';
+import cx from 'clsx';
+import { Link, useLocation } from 'react-router-dom';
 
-const tabList = [
-    "Code",
-    "Issues",
-    "Pull requests",
-    "Actions",
-    "Project",
-    "Wiki",
-    "Security",
-    "Insight",
-    "Setting",
-  ]
+const TabList = [
+    { name: 'Code', pathname: '/code' },
+    { name: 'Issues', pathname: '/Issue' },
+    { name: 'pull requests', pathname: '/pulls' },
+    { name: 'Actions', pathname: '/actions' },
+    { name: 'Project', pathname: '/Projects' },
+    { name: 'Security', pathname: '/Security' },
+];
 
 export default function Taps() {
-    const [selectedTapIdx, setSelectedTapIdx] = useState(0)
+    const { pathname } = useLocation();
+    console.log({ pathname });
     return (
         <ul className={styles.tapList}>
-            {tabList.map((tap, idx) => (
+            {TabList.map((tap, idx) => (
                 <Tap
                     key={`${idx}`}
-                    title={tap}
-                    selected={idx === selectedTapIdx}
-                    onClick={() => setSelectedTapIdx(idx)}
+                    item={tap}
+                    selected={(pathname === '/' ? 'issue' : pathname) === tap.pathname}
                 />
             ))}
         </ul>
-    )
+    );
 }
 
-
-function Tap({ title, number, selected, onClick }) {
+function Tap({ item, number, selected }) {
     return (
         <li>
-            <button
-                onClick={onClick}
-                className={cx(styles.tap, { [styles.selected]: selected })}>
-                <span>{title}</span>
-                {number && <div className={styles.circle}>{number}</div>}
-            </button>
+            <Link to={item.pathname} className={styles.link}>
+                <button className={cx(styles.tap, { [styles.selected]: selected })}>
+                    <span>{item.name}</span>
+                    {number && <div className={styles.circle}>{number}</div>}
+                </button>
+            </Link>
         </li>
-    )
+    );
 }

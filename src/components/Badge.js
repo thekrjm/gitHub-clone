@@ -1,8 +1,7 @@
 import styles from './Badge.module.css';
-import cx from 'clsx'
 
-export default function Badge({ title, color }) {
+export default function Badge({ name, color }) {
     return (
-        <div className={cx(styles.badge, styles[color])}>{title}</div>
+        <div className={styles.badge} style={{backgroundColor:`#${color}`}}>{name}</div>
     )
 }
