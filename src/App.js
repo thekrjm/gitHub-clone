@@ -1,6 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
 import Issue from './pages/Issue.js';
-import New from './pages/New.js';
+import CreateIssue from './pages/CreateIssue.js';
 import Projects from './pages/Projects.js';
 import PullsRequest from './pages/PullsRequest.js';
 import Code from './pages/Code.js';
@@ -17,7 +17,7 @@ function App() {
             <Routes>
                 <Route path="/" element={<Issue />} />
                 <Route path="/issue" element={<Issue />} />
-                <Route path="/new" element={<New />} />
+                <Route path="/new" element={<CreateIssue />} />
                 <Route path="/projects" element={<Projects />} />
                 <Route path="/pulls" element={<PullsRequest />} />
                 <Route path="/code" element={<Code />} />

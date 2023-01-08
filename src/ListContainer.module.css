@@ -28,13 +28,17 @@
     padding: 16px;
 }
 
-.paginationContainer{
+.paginationContainer {
     display: flex;
     justify-content: center;
 }
 
-.button{
+.button {
     font-size: 14px;
     background-color: rgb(39, 224, 144);
     color: white;
+}
+
+.link {
+    text-decoration: none;
 }
