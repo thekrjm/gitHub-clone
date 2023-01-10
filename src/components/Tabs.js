@@ -13,7 +13,6 @@ const TabList = [
 
 export default function Taps() {
     const { pathname } = useLocation();
-    console.log({ pathname });
     return (
         <ul className={styles.tapList}>
             {TabList.map((tap, idx) => (

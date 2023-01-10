@@ -1,3 +1,7 @@
+*{
+    box-sizing: border-box;
+}
+
 .container {
     display: flex;
     margin-top: 24px;
@@ -24,20 +28,6 @@
     border-radius: 6px;
 }
 
-.input {
-    width: 99%;
-    background-color: #f6f8fa;
-    padding: 5px 12px;
-    line-height: 20px;
-    box-shadow: 208, 215, 222, 0.2;
-}
-
-.textarea {
-    height: 200px;
-    min-height: 200px;
-    margin-top: 8px;
-}
-
 .button {
     font-size: 14px;
     background-color: rgb(39, 224, 144);
@@ -47,4 +37,8 @@
 .buttonWrapper {
     display: flex;
     justify-content: flex-end;
+}
+
+.error{
+    outline-color: red;
 }
