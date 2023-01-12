@@ -8,10 +8,13 @@ import Security from './pages/Security.js';
 import Actions from './pages/Actions.js';
 import Header from './Header.js';
 import Nav from './components/Nav.js';
+import { QueryClient, QueryClientProvider } from 'react-query';
+
+const queryClient = new QueryClient();
 
 function App() {
     return (
-        <>
+        <QueryClientProvider client={queryClient}>
             <Nav />
             <Header />
             <Routes>
@@ -24,7 +27,7 @@ function App() {
                 <Route path="/security" element={<Security />} />
                 <Route path="/actions" element={<Actions />} />
             </Routes>
-        </>
+        </QueryClientProvider>
     );
 }
 

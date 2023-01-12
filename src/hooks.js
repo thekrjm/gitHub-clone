@@ -1,10 +1,13 @@
-import { useRef, useState } from "react";
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { useQuery } from "react-query";
+import { GITHUB_API } from "./api";
 
 export function useForm({
     validate, 
     initialValues,
     onSuccess,
-    onError,
+    onErrors,
     onSubmit,
     refs,
 }){
@@ -19,7 +22,7 @@ export function useForm({
         setInputValues({...inputValues, [name]:value})
     }
 
-    function handleSubmit(e){
+    async function handleSubmit(e){
         e.preventDefault()
         
         const validateResult = validate(inputValues);
@@ -37,8 +40,13 @@ export function useForm({
             return;
         }
         if(errorKeys.length === 0){
-            onSubmit()
-            console.log('Submit 성공');
+            try{
+                const result=await onSubmit()
+                onSuccess(result);
+            }catch(e){
+                onErrors();
+            }
+            return;
         }
 
 
@@ -49,7 +57,24 @@ export function useForm({
         onChange,
         isSubmitting,
         errors,
-        handleSubmit
+        handleSubmit,
+        refs
     };
     
+}
+
+
+async function getUserInfo(){
+    const data = await axios(`${GITHUB_API}/user`,{
+        headers:{
+            Authorization: process.env.REACT_APP_GITHUB_TOKEN,
+            'Content-Type' : 'application/json',
+        },
+    });
+    return data.data;
+}
+
+
+export function useUser(){
+    return useQuery(['userInfo'],()=>getUserInfo(),{staleTime:'Infinity'});
 }
