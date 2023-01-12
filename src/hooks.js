@@ -1,10 +1,11 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export function useForm({
     validate, 
     initialValues,
     onSuccess,
-    onError,
+    onErrors,
     onSubmit,
     refs,
 }){
@@ -12,6 +13,7 @@ export function useForm({
     const [inputValues, setInputValues] = useState(initialValues)
     const [errors, setErrors] = useState({});
     const [isSubmitting, setIsSubmitting] = useState(false);
+    const navigate = useNavigate()
 
 
     function onChange(e){
@@ -19,7 +21,7 @@ export function useForm({
         setInputValues({...inputValues, [name]:value})
     }
 
-    function handleSubmit(e){
+    async function handleSubmit(e){
         e.preventDefault()
         
         const validateResult = validate(inputValues);
@@ -37,8 +39,15 @@ export function useForm({
             return;
         }
         if(errorKeys.length === 0){
-            onSubmit()
-            console.log('Submit 성공');
+            try{
+                const result=await onSubmit()
+                console.log(result);
+                onSuccess(result);
+                navigate('/', {replace:true})
+            }catch(e){
+                onErrors();
+            }
+            return;
         }
 
 
@@ -49,7 +58,8 @@ export function useForm({
         onChange,
         isSubmitting,
         errors,
-        handleSubmit
+        handleSubmit,
+        refs
     };
     
 }

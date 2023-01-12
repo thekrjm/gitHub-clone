@@ -8,8 +8,25 @@ import Security from './pages/Security.js';
 import Actions from './pages/Actions.js';
 import Header from './Header.js';
 import Nav from './components/Nav.js';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+import { GITHUB_API } from './api.js';
 
 function App() {
+    const [user, setUser] = useState();
+    useEffect(()=>{
+        getUserInfo()
+    }, []);
+
+    async function getUserInfo(){
+        const data = await axios(`${GITHUB_API}/user`,{
+            headers:{
+                Authorization: process.env.REACT_APP_GITHUB_TOKEN,
+                'Content-Type' : 'application/json',
+            },
+        });
+        setUser(data.data) 
+    }
     return (
         <>
             <Nav />
